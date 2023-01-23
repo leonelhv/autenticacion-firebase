@@ -1,34 +1,70 @@
 <div
-  class="border w-2/5 mx-auto flex justify-center items-center min-h-screen bg-transparent"
+  class="w-4/5 mx-auto flex justify-center items-center min-h-screen bg-transparent"
 >
   <form
     (submit)="loginUser()"
-    class="p-6 py-24 flex flex-col gap-4 justify-center items-center bg-white px-12 rounded-xl"
+    class="flex flex-col gap-4 justify-center items-center bg-white p-6 rounded-xl w-96"
     [formGroup]="formLogin"
   >
-    <h1 class="font-bold text-3xl mb-3">Login</h1>
-    <div class="flex gap-4 items-center">
-      <label for="" class="w-20">Correo</label>
+    <h1 class="font-bold text-3xl uppercase">Login</h1>
+    <h3 *ngIf="failLogin" class="text-red-500">Credenciales Incorrectas</h3>
+    <div class="flex flex-col w-full">
+      <label for="email" class="mb-2 font-semibold">Correo</label>
       <input
+        id="email"
         type="text"
-        class="border p-2"
+        class="border p-2 rounded-lg"
         formControlName="email"
         name="email"
+        [ngClass]="{ 'border-red-500': campoNoValido('email') }"
       />
+      <div class="text-red-500 text-sm">
+        <span
+          *ngIf="form['email']?.errors?.['required'] && form['email'].touched"
+        >
+          El email es requerido
+        </span>
+        <span
+          *ngIf="form['email']?.errors?.['pattern'] && form['email'].touched"
+        >
+          El formato del campo email es incorrecto
+        </span>
+      </div>
     </div>
-    <div class="flex gap-4 items-center">
-      <label for="" class="w-20">Contraseña</label>
+
+    <div class="flex flex-col w-full">
+      <label for="" class="mb-2 font-semibold">Contraseña</label>
       <input
         type="password"
-        class="border p-2"
+        class="border p-2 rounded-lg"
         formControlName="password"
         name="password"
+        [ngClass]="{ 'border-red-500': campoNoValido('password') }"
       />
+      <div class="text-red-500 text-sm">
+        <span
+          *ngIf="form['password']?.errors?.['required'] && form['password'].touched"
+        >
+          El password es requerido
+        </span>
+        <span
+          *ngIf="form['password']?.errors?.['pattern'] && form['password'].touched"
+        >
+          El tamaño mínimo de la contraseña es de 8 carácteres
+        </span>
+      </div>
     </div>
     <button
-      class="bg-yellow-400 p-3 rounded-lg mt-6 hover:bg-blue-800 hover:text-white"
+      [disabled]="formLogin.invalid"
+      class="bg-black text-white p-3 rounded-lg mt-6 hover:bg-blue-600 disabled:opacity-25 hover:disabled:bg-black"
     >
       Iniciar Sesión
     </button>
+    <span
+      >No tienes una cuenta?
+      <a routerLink="/register" class="font-bold text-blue-500"
+        >Registrate</a
+      ></span
+    >
   </form>
 </div>

@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-
+import { regexEmail } from '../utils/regex';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,17 +16,34 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
   formReg!: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.formReg = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(regexEmail),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
     });
   }
 
   registerUser() {
     this.userService
       .registerUser(this.formReg.value)
-      .then((res) => console.log(res))
+      .then((res) => {
+        this.router.navigate(['home']);
+        console.log(res);
+      })
       .catch((error) => console.log(error));
+  }
+
+  get form(): { [key: string]: AbstractControl } {
+    return this.formReg.controls;
+  }
+
+  campoNoValido(campo: string) {
+    return this.formReg.get(campo)?.invalid && this.formReg.get(campo)?.touched;
   }
 }
