@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/cdk/overlay-prebuilt.css";
+.overlay-panel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  min-height: 400px;
+  margin: 0 50px;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 15px;
+}

@@ -1,0 +1,9 @@
+<button
+  class="bg-green-600 px-4 py-2 text-white rounded-lg"
+  (click)="openFromTemplate()"
+>
+  Añadir Producto
+</button>
+<ng-template cdk-portal #overlayTemplate="cdkPortal">
+  <ng-content></ng-content>
+</ng-template>
