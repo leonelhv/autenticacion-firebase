@@ -52,7 +52,6 @@ export class LoginComponent implements OnDestroy {
         console.log(error);
         this.failLogin = true;
         this.timeoutId = setTimeout(() => {
-          console.log('aaaaaaa');
           this.failLogin = false;
         }, 3000);
       });
