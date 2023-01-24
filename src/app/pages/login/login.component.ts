@@ -54,7 +54,7 @@ export class LoginComponent implements OnDestroy {
         this.timeoutId = setTimeout(() => {
           console.log('aaaaaaa');
           this.failLogin = false;
-        }, 10000);
+        }, 3000);
       });
   }
   ngOnDestroy(): void {
