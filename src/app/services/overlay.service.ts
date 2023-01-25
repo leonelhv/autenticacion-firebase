@@ -24,7 +24,6 @@ export class OverlayService {
   close(id: string) {
     if (this.modals[id]) {
       this.modals[id].overlayRef.dispose();
-      this.modals[id].overlayRef.detach();
       delete this.modals[id];
     }
   }
