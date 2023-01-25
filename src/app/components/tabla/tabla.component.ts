@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Medicamento } from 'src/app/interfaces/interface';
 import { FarmaciaService } from 'src/app/services/farmacia.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',
@@ -19,6 +19,22 @@ export class TablaComponent implements OnInit {
   }
 
   onDelete(medicamento: Medicamento) {
-    this.farmaciaService.deleteProducto(medicamento);
+    Swal.fire({
+      title: `Estas Seguro de eliminar ${medicamento.nombre}?`,
+      text: 'No podrá recuperar esta información!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          `El producto ${medicamento.nombre} fue eliminado exitosamente`
+        );
+        const res = this.farmaciaService.deleteProducto(medicamento);
+      }
+    });
   }
 }

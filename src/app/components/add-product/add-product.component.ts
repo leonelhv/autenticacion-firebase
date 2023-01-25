@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { FarmaciaService } from 'src/app/services/farmacia.service';
 import { OverlayService } from 'src/app/services/overlay.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -40,7 +40,11 @@ export class AddProductComponent implements OnInit {
       costo,
       imagen: String(imagen.trim()),
     };
-    this.farmaciaService.addProduct(newProducto).then(() => {
+    this.farmaciaService.addProduct(newProducto);
+    Swal.fire({
+      icon: 'success',
+      title: `El producto: ${nombre} fue agregado correctamente`,
+    }).then(() => {
       this.overlayService.close('addProduct');
     });
   }

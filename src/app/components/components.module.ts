@@ -6,7 +6,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [HeaderComponent, TablaComponent, AddProductComponent],
   imports: [CommonModule, OverlayModule, PortalModule, ReactiveFormsModule],
