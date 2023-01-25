@@ -1,8 +1,10 @@
 <app-header></app-header>
-<div class="w-3/6 my-6 mx-auto">
-  <!--  <app-overlay>
-    <app-add-product></app-add-product>
-  </app-overlay> -->
-  <button #mybutton (click)="open(mybutton, 1)">click me</button>
+<div class="w-10/12 my-6 mx-auto">
+  <button
+    class="bg-indigo-500 py-2 px-4 rounded-lg text-white"
+    (click)="open()"
+  >
+    Agregar Producto
+  </button>
   <app-tabla></app-tabla>
 </div>

@@ -3,10 +3,16 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: 0 30px;
   max-width: 600px;
-  min-height: 400px;
-  margin: 0 50px;
-  padding: 25px;
-  background-color: #fff;
+  max-height: 400px;
   border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.overlay-panel > * {
+  width: inherit;
+  height: inherit;
+  /* overflow-y: scroll; */
 }

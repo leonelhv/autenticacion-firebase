@@ -1,6 +1,6 @@
 export interface Medicamento {
   id?: string;
   nombre: string;
-  costo: string;
+  costo: Number;
   imagen: string;
 }

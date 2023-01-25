@@ -39,31 +39,32 @@
           </thead>
           <tbody>
             <tr
-              class="bg-gray-100 border-b"
-              *ngFor="let prod of medicamentos; let i = index"
+              class="border-b"
+              *ngFor="let prod of medicamentos; let i = index; let odd = odd"
+              [ngClass]="odd ? 'bg-white' : 'bg-gray-100'"
             >
               <td
-                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900"
               >
                 {{ i + 1 }}
               </td>
               <td
-                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap"
               >
                 {{ prod.nombre }}
               </td>
               <td
-                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap"
               >
-                {{ prod.costo | currency : "S/." }}
+                {{ prod.costo.toString() | currency : "S/." }}
               </td>
               <td
-                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap"
               >
                 <img [src]="prod.imagen" alt="" class="w-12" />
               </td>
               <td
-                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap"
               >
                 <button
                   (click)="onDelete(prod)"
