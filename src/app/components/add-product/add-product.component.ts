@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,7 +13,9 @@ import { OverlayService } from 'src/app/services/overlay.service';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit {
+  formProducto!: FormGroup;
+
   regexImagen =
     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*\.(jpg|jpeg|png|svg))/;
 
@@ -23,11 +25,13 @@ export class AddProductComponent {
     private farmaciaService: FarmaciaService
   ) {}
 
-  formProducto: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(5)]],
-    costo: ['', [Validators.required, Validators.min(0.5)]],
-    imagen: ['', [Validators.required, Validators.pattern(this.regexImagen)]],
-  });
+  ngOnInit(): void {
+    this.formProducto = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(5)]],
+      costo: ['', [Validators.required, Validators.min(0.5)]],
+      imagen: ['', [Validators.required, Validators.pattern(this.regexImagen)]],
+    });
+  }
 
   guardar() {
     const { nombre, costo, imagen } = this.formProducto.value;
@@ -37,11 +41,11 @@ export class AddProductComponent {
       imagen: String(imagen.trim()),
     };
     this.farmaciaService.addProduct(newProducto).then(() => {
-      this.overlayService.close();
+      this.overlayService.close('addProduct');
     });
   }
   close() {
-    this.overlayService.close();
+    this.overlayService.close('addProduct');
   }
 
   get form(): { [key: string]: AbstractControl } {

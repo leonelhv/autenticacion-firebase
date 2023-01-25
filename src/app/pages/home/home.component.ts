@@ -11,6 +11,6 @@ export class HomeComponent {
   constructor(private overlayService: OverlayService) {}
 
   open() {
-    this.overlayService.open(AddProductComponent).subscribe((res) => {});
+    this.overlayService.open(AddProductComponent, 'addProduct');
   }
 }
