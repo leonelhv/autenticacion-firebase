@@ -15,7 +15,6 @@ export class OverlayService {
   onClosed = this.afterClosed.asObservable();
 
   open(component: any) {
-    this.close(null);
     this.overlayRef = this.overlay.create(this.getOverlayConfig());
 
     this.overlayRef.attach(new ComponentPortal(component));
@@ -24,12 +23,11 @@ export class OverlayService {
     return this.onClosed.pipe(take(1));
   }
 
-  close = (data: any) => {
+  close = () => {
     this.sub && this.sub.unsubscribe();
     if (this.overlayRef) {
       this.overlayRef.dispose();
       this.overlayRef = null;
-      this.afterClosed.next(data);
     }
   };
   private getOverlayPosition(): PositionStrategy {

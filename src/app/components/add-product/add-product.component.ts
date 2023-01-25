@@ -37,11 +37,11 @@ export class AddProductComponent {
       imagen: String(imagen.trim()),
     };
     this.farmaciaService.addProduct(newProducto).then(() => {
-      this.overlayService.close(10);
+      this.overlayService.close();
     });
   }
   close() {
-    this.overlayService.close(10);
+    this.overlayService.close();
   }
 
   get form(): { [key: string]: AbstractControl } {
