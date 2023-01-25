@@ -9,11 +9,16 @@ export class OverlayService {
   constructor(private overlay: Overlay) {}
   private modals: { [id: string]: any } = {};
 
-  open(component: any, id: string) {
+  open(component: any, id: string, data?: any) {
     this.modals[id] = {
       overlayRef: this.overlay.create(this.getOverlayConfig()),
     };
-    this.modals[id].overlayRef.attach(new ComponentPortal(component));
+    const componentRef = this.modals[id].overlayRef.attach(
+      new ComponentPortal(component)
+    );
+    if (data) {
+      componentRef.instance.data = data;
+    }
   }
 
   close(id: string) {
