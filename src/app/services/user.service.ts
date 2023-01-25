@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { Observable, of } from 'rxjs';
 import { userInfo } from '../interfaces/interface';
 
 @Injectable({
