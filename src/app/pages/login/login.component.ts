@@ -46,7 +46,6 @@ export class LoginComponent implements OnDestroy {
       .login(this.formLogin.value)
       .then((res) => {
         this.router.navigate(['home']);
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -55,6 +54,11 @@ export class LoginComponent implements OnDestroy {
           this.failLogin = false;
         }, 3000);
       });
+  }
+  loginGoogle() {
+    this.userService.loginGoogle().then(() => {
+      this.router.navigate(['/home']);
+    });
   }
   ngOnDestroy(): void {
     if (this.timeoutId) {
