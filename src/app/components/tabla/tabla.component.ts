@@ -28,12 +28,14 @@ export class TablaComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, Eliminar!',
       cancelButtonText: 'Cancelar',
+      imageUrl: `${medicamento.imagen}`,
+      imageHeight: 100,
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
           `El producto ${medicamento.nombre} fue eliminado exitosamente`
         );
-        const res = this.farmaciaService.deleteProducto(medicamento);
+        this.farmaciaService.deleteProducto(medicamento);
       }
     });
   }

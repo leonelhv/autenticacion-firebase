@@ -44,6 +44,8 @@ export class AddProductComponent implements OnInit {
     Swal.fire({
       icon: 'success',
       title: `El producto: ${nombre} fue agregado correctamente`,
+      imageUrl: `${imagen}`,
+      imageHeight: 100,
     }).then(() => {
       this.overlayService.close('addProduct');
     });
