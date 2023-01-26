@@ -11,7 +11,8 @@ import { AddProductComponent } from '../add-product/add-product.component';
 })
 export class TablaComponent implements OnInit {
   medicamentos!: Medicamento[];
-
+  image_default =
+    'https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg';
   constructor(
     private farmaciaService: FarmaciaService,
     private overlayService: OverlayService

@@ -62,7 +62,12 @@
                 <td
                   class="px-6 py-2 text-sm font-light text-gray-900 whitespace-nowrap"
                 >
-                  <img [src]="prod.imagen" alt="" class="w-12" />
+                  <img
+                    [src]="prod.imagen"
+                    alt=""
+                    class="w-12"
+                    [appFallbackImage]="image_default"
+                  />
                 </td>
                 <td
                   class="flex gap-4 px-6 py-2 text-sm font-light text-gray-900 whitespace-nowrap"
