@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Medicamento } from '../interfaces/interface';
 
@@ -25,5 +31,11 @@ export class FarmaciaService {
   deleteProducto(medicamento: Medicamento) {
     const farmaciaRef = doc(this.firestore, `medicamentos/${medicamento.id}`);
     return deleteDoc(farmaciaRef);
+  }
+
+  updateProducto(id: string, medicamento: Medicamento) {
+    const productoRef = doc(this.firestore, `medicamentos/${id}`);
+    console.log(productoRef);
+    return updateDoc(productoRef, { ...medicamento });
   }
 }

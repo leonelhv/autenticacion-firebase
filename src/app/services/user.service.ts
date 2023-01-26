@@ -27,7 +27,9 @@ export class UserService {
   }
 
   logout() {
-    this.auth.signOut();
+    this.auth.signOut().then((res) => {
+      this.router.navigate(['/auth']);
+    });
   }
 
   datosUsuario(): userInfo {

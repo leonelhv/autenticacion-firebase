@@ -14,12 +14,11 @@ export class HeaderComponent {
   infoUser$!: Observable<userInfo>;
   default_image = 'https://img.freepik.com/free-icon/user_318-790139.jpg?w=100';
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService) {
     this.user = this.userService.datosUsuario();
   }
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/auth']);
   }
 }
